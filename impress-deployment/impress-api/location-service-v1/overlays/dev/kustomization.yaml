@@ -8,4 +8,4 @@ configMapGenerator:
 - name: location-service-v1
   behavior: merge
   literals:
-  - MESSAGE=Current localtion is Santiago
+  - MESSAGE=Current localtion is Montenegro
