@@ -1,0 +1,17 @@
+apiVersion: builtin
+kind: AnnotationsTransformer
+metadata:
+  name: annotations
+
+fieldSpecs:
+  - path: metadata/annotations
+    kind: Service
+    create: true
+
+  - path: spec/template/metadata/annotations
+    kind: Deployment
+    create: true
+
+  - path: spec/template/metadata/annotations
+    kind: StatefulSet
+    create: true

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: location-service-v1
+spec:
+  template:
+    spec:
+      containers:
+      - image: bash
+        name: app
+        volumeMounts:
+        - name: command
+          mountPath: /command.sh
+          subPath: command.sh
+        envFrom:
+        - configMapRef:
+            name: location-service-v1
+        args: ["/bin/sh", "/command.sh"]
+      volumes:
+      - name: command 
+        configMap:
+          name: command

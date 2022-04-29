@@ -1,0 +1,54 @@
+apiVersion: builtin
+kind: LabelTransformer
+metadata:
+  name: labels-selector
+
+# Immutable Labels applied to all objects and selectors.
+# These labels don't change in context of a single logical application version (v1,v2, etc).
+#
+# In API version apps/v1, a Deployment's label selector is immutable after it gets created.
+# It is generally discouraged to make label selector updates and it is suggested to plan your selectors up front.
+labels:
+  app.kubernetes.io/component: location-service
+  app.kubernetes.io/name: location-service-v1
+  app.kubernetes.io/part-of: impress-api
+  app.impress.com/scope: private
+
+fieldSpecs:
+  # all
+  - path: metadata/labels
+    create: true
+
+  - path: spec/template/metadata/labels
+    kind: Deployment
+    create: true
+
+  - path: spec/template/metadata/labels
+    kind: StatefulSet
+    create: true
+
+  - path: spec/jobTemplate/metadata/labels
+    kind: CronJob
+    create: true
+
+  # selectors
+  - path: spec/selector/matchLabels
+    kind: Deployment
+    create: true
+
+  - path: spec/selector/matchLabels
+    kind: StatefulSet
+    create: true
+
+  - path: spec/selector/matchLabels
+    create: true
+    kind: PodDisruptionBudget
+
+  - path: spec/selector
+    create: true
+    kind: Service
+
+  - path: spec/selector/matchLabels
+    create: true
+    kind: ServiceMonitor
+
