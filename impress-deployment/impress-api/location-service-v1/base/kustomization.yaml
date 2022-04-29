@@ -9,7 +9,7 @@ configMapGenerator:
 - name: location-service-v1
   literals:
   - MESSAGE=Current localtion is Barcelona
-- name: command
+- name: location-service-v1-command
   literals:
   - command.sh=while sleep 2; do echo $MESSAGE; done
 transformers:
