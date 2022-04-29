@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: impress-api
+  namespace: argo-cd
+spec:
+  generators:
+  - list:
+      elements:
+        app: document-service-v1
+        env: dev 
+  template:
+    metadata:
+      name: '{{ app }}-{{ env }}'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/rinatsharipov/argocd-experiments
+        targetRevision: master
+        path: impress-deployment/impress-api/{{ app }}//overlays/{{ env }}
+    destination:
+      namespace: default
+      server: https://kubernetes.default.svc

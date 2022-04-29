@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: impress-api
+
+resources:
+  - deployment.yaml
+
+configMapGenerator:
+- name: document-service-v1
+  literals:
+  - MESSAGE=Hello from DEFAULT env
+- name: command
+  literals:
+  - command.sh=while sleep 2; do echo $MESSAGE; done
+transformers:
+  - labels-selector.yaml
+
