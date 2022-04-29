@@ -17,6 +17,6 @@ spec:
             name: location-service-v1
         args: ["/bin/sh", "/command.sh"]
       volumes:
-      - name: location-service-v1-command 
+      - name: command 
         configMap:
-          name: ilocation-service-v1-command
+          name: location-service-v1-command

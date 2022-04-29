@@ -17,6 +17,6 @@ spec:
             name: document-service-v1
         args: ["/bin/sh", "/command.sh"]
       volumes:
-      - name: document-service-v1-command 
+      - name: command 
         configMap:
           name: document-service-v1-command
