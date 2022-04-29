@@ -9,3 +9,7 @@ configMapGenerator:
   behavior: merge
   literals:
   - MESSAGE=Hello from PRE-LIVE env
+
+images:
+- name: bash
+  newTag: "5.0.18"

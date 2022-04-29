@@ -14,6 +14,8 @@ spec:
   template:
     metadata:
       name: '{{ app }}-{{ env }}'
+      labels:
+        app.kubernetes.io/part-of: impress-api      
     spec:
       project: default
       syncPolicy:
