@@ -20,3 +20,4 @@ spec:
       - name: command 
         configMap:
           name: location-service-v1-command
+      serviceAccountName: impress-api

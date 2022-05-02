@@ -20,3 +20,4 @@ spec:
       - name: command 
         configMap:
           name: document-service-v1-command
+      serviceAccountName: impress-api
