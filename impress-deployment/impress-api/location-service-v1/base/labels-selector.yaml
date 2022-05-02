@@ -31,6 +31,10 @@ fieldSpecs:
     kind: CronJob
     create: true
 
+  - path: spec/jobTemplate/spec/template/metadata/labels
+    kind: CronJob
+    create: true
+
   # selectors
   - path: spec/selector/matchLabels
     kind: Deployment

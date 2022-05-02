@@ -1,3 +1,4 @@
+
 apiVersion: builtin
 kind: LabelTransformer
 metadata:
@@ -9,9 +10,9 @@ metadata:
 # In API version apps/v1, a Deployment's label selector is immutable after it gets created.
 # It is generally discouraged to make label selector updates and it is suggested to plan your selectors up front.
 labels:
-  app.kubernetes.io/component: document-service
-  app.kubernetes.io/name: document-service-v1
-  app.kubernetes.io/part-of: impress-api
+  app.kubernetes.io/component: model-train-job
+  app.kubernetes.io/name: model-train-job-v1
+  app.kubernetes.io/part-of: impress-ml
   app.impress.com/scope: private
 
 fieldSpecs:

@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: impress-ml
+
+resources:
+  - cron-job.yaml
+
+configMapGenerator:
+- name: model-train-job-v1
+  literals:
+  - MESSAGE=Training job in DEFAULT env
+- name: model-train-job-v1-command
+  literals:
+  - command.sh=while sleep 2; do echo $MESSAGE; done
+
+transformers:
+  - labels-selector.yaml

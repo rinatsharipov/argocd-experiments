@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: model-train-job-v1
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: bash
+              name: app
+              volumeMounts:
+                - name: command
+                  mountPath: /command.sh
+                  subPath: command.sh
+              envFrom:
+                - configMapRef:
+                    name: model-train-job-v1
+              args: [ "/bin/sh", "/command.sh" ]
+          volumes:
+            - name: command
+              configMap:
+                name: model-train-job-v1-command
+          serviceAccountName: impress-ml

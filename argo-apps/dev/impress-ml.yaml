@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: impress-ml
+  namespace: argo-cd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/rinatsharipov/argocd-experiments
+      revision: master
+      directories:
+      - path: impress-deployment/impress-ml
+      - path: impress-deployment/impress-ml/*
+      - path: impress-deployment/impress-ml/base
+        exclude: true
+      - path: impress-deployment/impress-ml/overlays
+        exclude: true
+  template:
+    metadata:
+      name: '{{path.basename}}-dev'
+      labels:
+        app.kubernetes.io/part-of: impress-ml
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/rinatsharipov/argocd-experiments
+        targetRevision: master
+        path: '{{ path }}/overlays/dev'
+      destination:
+        namespace: default
+        server: https://kubernetes.default.svc
