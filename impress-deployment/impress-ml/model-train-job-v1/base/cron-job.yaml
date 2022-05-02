@@ -4,6 +4,9 @@ metadata:
   name: model-train-job-v1
 spec:
   schedule: "* * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       template:
@@ -23,4 +26,6 @@ spec:
             - name: command
               configMap:
                 name: model-train-job-v1-command
+          restartPolicy: Never
+          activeDeadlineSeconds: 60
           serviceAccountName: impress-ml
