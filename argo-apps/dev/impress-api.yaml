@@ -19,7 +19,7 @@ spec:
     metadata:
       name: '{{path.basename}}-dev'
       labels:
-        app.kubernetes.io/part-of: impress-api
+        app.kubernetes.io/part-of: my-impress-api
         app.kubernetes.io/environment: dev
     spec:
       project: default
