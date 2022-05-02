@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: impress-api
+  name: impress-api-live
   namespace: argo-cd
 spec:
   generators:

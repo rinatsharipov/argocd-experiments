@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: impress-ml
+  name: impress-ml-live
   namespace: argo-cd
 spec:
   generators:
@@ -17,10 +17,10 @@ spec:
         exclude: true
   template:
     metadata:
-      name: '{{path.basename}}-dev'
+      name: '{{path.basename}}-live'
       labels:
         app.kubernetes.io/part-of: impress-ml
-        app.kubernetes.io/environment: dev
+        app.kubernetes.io/environment: live
     spec:
       project: default
       syncPolicy:
@@ -30,7 +30,7 @@ spec:
       source:
         repoURL: https://github.com/rinatsharipov/argocd-experiments
         targetRevision: master
-        path: '{{ path }}/overlays/dev'
+        path: '{{ path }}/overlays/live'
       destination:
         namespace: default
         server: https://kubernetes.default.svc
