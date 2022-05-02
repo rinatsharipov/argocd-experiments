@@ -8,8 +8,8 @@ spec:
   - git:
       repoURL: https://github.com/rinatsharipov/argocd-experiments
       revision: master
-      files:
-      - path: impress-deployment/impress-api
+      directories:
+      - path: impress-deployment/impress-api/*
   template:
     metadata:
       name: '{{path.basename}}-dev'
