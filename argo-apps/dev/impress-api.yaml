@@ -25,7 +25,7 @@ spec:
           selfHeal: true
       source:
         repoURL: https://github.com/rinatsharipov/argocd-experiments
-          targetRevision: master
+        targetRevision: master
         path: {{ path }}/overlays/dev
       destination:
         namespace: default
