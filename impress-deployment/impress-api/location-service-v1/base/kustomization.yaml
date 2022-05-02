@@ -12,6 +12,6 @@ configMapGenerator:
 - name: location-service-v1-command
   literals:
   - command.sh=while sleep 2; do echo $MESSAGE; done
+
 transformers:
   - labels-selector.yaml
-

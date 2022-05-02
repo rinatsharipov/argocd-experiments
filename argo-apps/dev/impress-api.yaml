@@ -3,19 +3,20 @@ kind: ApplicationSet
 metadata:
   name: impress-api
   namespace: argo-cd
+  labels:
+    app.kubernetes.io/part-of: impress-api
 spec:
   generators:
-  - list:
-      elements:
-      - app: document-service-v1
-        env: dev 
-      - app: location-service-v1
-        env: dev
+  - git:
+      repoURL: https://github.com/rinatsharipov/argocd-experiments
+      targetRevision: master
+      directories:
+        - impress-deployment/impress-api/*
   template:
     metadata:
-      name: '{{ app }}-{{ env }}'
+      name: '{{ path.basename }}-dev'
       labels:
-        app.kubernetes.io/part-of: impress-api      
+        app.kubernetes.io/part-of: impress-api
     spec:
       project: default
       syncPolicy:
@@ -24,8 +25,8 @@ spec:
           selfHeal: true
       source:
         repoURL: https://github.com/rinatsharipov/argocd-experiments
-        targetRevision: master
-        path: impress-deployment/impress-api/{{ app }}//overlays/{{ env }}
+          targetRevision: master
+        path: {{ path }}/overlays/dev
       destination:
         namespace: default
         server: https://kubernetes.default.svc
