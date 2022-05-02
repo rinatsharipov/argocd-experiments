@@ -9,14 +9,19 @@ spec:
       repoURL: https://github.com/rinatsharipov/argocd-experiments
       revision: master
       directories:
+      - path: impress-deployment/impress-api
       - path: impress-deployment/impress-api/*
+      - path: impress-deployment/impress-api/base
+        exclude: true
+      - path: impress-deployment/impress-api/overlays
+        exclude: true
   template:
     metadata:
       name: '{{path.basename}}-dev'
       labels:
         app.kubernetes.io/part-of: impress-api
     spec:
-      project: impress-api
+      project: default
       syncPolicy:
         automated:
           prune: true
