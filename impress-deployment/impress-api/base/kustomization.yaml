@@ -4,3 +4,6 @@ namespace: impress-api
 
 resources:
   - namespace.yaml
+  - role.yaml
+  - role-binding.yaml
+  - service-account.yaml
